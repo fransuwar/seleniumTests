@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head lang="pt-br">
+	
+		<title>Cadastro de Contatos</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<!-- Inserindo o Bootstrap via CDN com link local para o webjars -->
+		<link
+			href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.5/css/bootstrap.min.css"
+			th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+			rel="stylesheet" media="screen" />
+			
+		<!-- Inserindo o JQuery via CDN com link local para o webjars -->
+		<script
+			src="http://cdn.jsdelivr.net/webjars/jquery/3.0.0-rc1/jquery.min.js"
+			th:src="@{/webjars/jquery/3.0.0-rc1/jquery.min.js}">
+			
+		</script>
+	
+	</head>
+	
+	<body>
+		<!-- Inserindo o cabecalho -->
+		<div th:replace="fragmentos/header :: header"></div>
+		
+		<!-- Corpo da pagina -->
+		<div class="container" style="padding-top: 50px">
+			<div class="hero-unit">
+				<div class="panel panel-default" style="margin: 10px">
+					
+					<div class="panel-heading">
+						<h1 class="panel-title">Contatos</h1>
+					</div>
+					
+					<div style="margin: 10px">
+						<form id="formulario" action="#" class="form-horizontal" method="POST" th:action="@{/contatos/salvar}" th:object="${contato}">
+						
+							<input type="hidden" id="inputID" th:field="*{id}" />
+							
+							<div class="form-group">
+						    	<div class="col-sm-12">
+						      		<input type="text" class="form-control" id="inputNome" placeholder="Nome" th:field="*{nome}"/>
+						      		<span id="helpBlockNome" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="help-block"></span>
+						    	</div>
+						  	</div>
+						  	
+						  	<div class="form-group">
+						    	<div class="col-sm-12">
+						      		<input type="email" class="form-control" id="inputEmail" placeholder="Email" th:field="*{email}"/>
+						      		<span id="helpBlockNEmail" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="help-block"></span>
+						    	</div>
+						  	</div>
+						  	
+						  	<div class="form-group">
+						    	<div class="col-sm-12">
+						      		<input type="text" class="form-control" id="inputTelefone" placeholder="Telefone" th:field="*{telefone}"/>
+						      		<span id="helpBlockTelefone" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}" class="help-block"></span>
+						    	</div>
+						  	</div>
+						  	
+						  	<div class="form-group">
+						    	<div class="col-sm-1">
+						      		<button id="botao-salvar" type="submit" class="btn btn-primary" style="padding-top: 10px">Salvar</button>
+						    	</div>
+						    	<div class="col-sm-1">
+						      		<a href="/contatos" th:href="@{/contatos}" class="btn btn-large btn-default">Cancelar</a>
+						    	</div>
+						  	</div>
+						</form>
+					</div>
+						
+				</div>
+			</div>
+			
+			<!-- Inserindo o rodapé -->
+			<div th:replace="fragmentos/footer :: footer"></div>
+		</div>
+	</body>
+</html>

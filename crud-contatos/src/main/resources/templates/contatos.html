@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head lang="pt-br">
+	
+		<title>Contatos</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<!-- Inserindo o Bootstrap via CDN com link local para o webjars -->
+		<link
+			href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.5/css/bootstrap.min.css"
+			th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+			rel="stylesheet" media="screen" />
+			
+		<!-- Inserindo o JQuery via CDN com link local para o webjars -->
+		<script
+			src="http://cdn.jsdelivr.net/webjars/jquery/3.0.0-rc1/jquery.min.js"
+			th:src="@{/webjars/jquery/3.0.0-rc1/jquery.min.js}">
+			
+		</script>
+	
+	</head>
+	
+	<body>
+		<!-- Inserindo o cabecalho -->
+		<div th:replace="fragmentos/header :: header"></div>
+		
+		<!-- Corpo da pagina -->
+		<div class="container" style="padding-top: 50px">
+			<div class="hero-unit">
+				<div class="panel panel-default" style="margin: 10px">
+					
+					<div class="panel-heading">
+						<h1 class="panel-title">Lista de Contatos</h1>
+					</div>
+					
+					<div style="margin: 20px 20px">
+						<a id="link-novo-contato" href="/contatos/cadastro" th:href="@{/contatos/cadastro}" class="btn btn-large btn-success">Adicionar</a>
+					</div>
+					
+					<div class="panel-body">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Nome</th>
+									<th>E-mail</th>
+									<th>Telefone</th>
+									<th class="actions">Ações</th>
+								</tr>
+							</thead>
+							<tbody th:if="${#lists.isEmpty(contatos)}">
+								<tr><td colspan="3">Nenhum contato cadastrado.</td></tr>
+							</tbody>
+							<tbody th:if="${not #lists.isEmpty(contatos)}">
+								<tr class="linha" th:each="contato : ${contatos}">
+									<td th:text="${contato.id}"></td>
+									<td th:text="${contato.nome}"></td>
+									<td th:text="${contato.email}"></td>
+									<td th:text="${contato.telefone}"></td>
+									<td class="actions">
+										<a th:id="'editar' + ${contato.id}" class="btn btn-warning btn-xs editar" th:href="@{/contatos/editar(id=${contato.id})}">Editar</a>
+										<a th:id="'deletar' + ${contato.id}" class="btn btn-danger btn-xs deletar" th:href="@{/contatos/deletar(id=${contato.id})}">Deletar</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Inserindo o rodapé -->
+			<div th:replace="fragmentos/footer :: footer"></div>
+		</div>
+	</body>
+</html>

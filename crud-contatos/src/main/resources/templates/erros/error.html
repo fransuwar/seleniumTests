@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head lang="pt-br">
+	
+		<title>Auto Estudo NPI - Testes de Integração</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<!-- Inserindo o Bootstrap via CDN com link local para o webjars -->
+		<link
+			href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.5/css/bootstrap.min.css"
+			th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+			rel="stylesheet" media="screen" />
+			
+		<!-- Inserindo o JQuery via CDN com link local para o webjars -->
+		<script
+			src="http://cdn.jsdelivr.net/webjars/jquery/3.0.0-rc1/jquery.min.js"
+			th:src="@{/webjars/jquery/3.0.0-rc1/jquery.min.js}">
+			
+		</script>
+		
+		<style type="text/css">
+			#info{
+	            max-width: 550px;
+	            _width: 550px;
+	            padding: 30px 20px 50px;
+	            border: 1px solid #b3b3b3;
+	            border-radius: 4px;
+	            margin: 0 auto;
+	            box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #fff;
+	            background: #fcfcfc;
+	            margin-top: 30px;
+	            margin-bottom: 30px;
+	            text-align: center;
+	        }
+	        #msg-title{
+	            margin: 0 10px;
+	            font-size: 50px;
+	        }
+	        #msg{margin: 1em 0;}
+		</style>
+	</head>
+	
+	<body>
+		<!-- Inserindo o cabecalho -->
+		<div th:replace="fragmentos/header :: header"></div>
+		
+		<!-- Corpo da pagina -->
+		<div class="container" style="padding-top: 50px">
+			<div class="hero-unit">
+				<h1>Auto Estudo NPI</h1>
+				<p>Bem vindo ao auto estudo do NPI. Este projeto é um simples CRUD de contatos. 
+				Serão utilizadas as seguintes tecnologias.</p>
+				
+				<div class="container" id="info">
+				    <h1 id="msg-title">ERRO</h1>
+				    <h3 id="msg">Desculpe. Requisição Inválida.</h3>
+				</div>
+			</div>
+			
+			<!-- Inserindo o rodapé -->
+			<div th:replace="fragmentos/footer :: footer"></div>
+		</div>
+	</body>
+</html>
